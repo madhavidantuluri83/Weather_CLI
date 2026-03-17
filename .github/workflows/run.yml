@@ -26,9 +26,10 @@ jobs:
       run: python weather.py Hyderabad
 
 -name: Commit and Push Changes
-run: |
+run: 
     git config --global user.name "Madhavi"
     git config --global user.email "madhavi.dantuluri83@gmail.com"
     git add weather_log.json
     git commit -m "Update weather log" || echo "No changes to commit"
+    git pull origin master --rebase
     git push
