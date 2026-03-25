@@ -23,7 +23,7 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Run Script
-      run: python weather.py Hyderabad
+      run: python weather.py Bangalore
 
 -name: Commit and Push Changes
 run: 
