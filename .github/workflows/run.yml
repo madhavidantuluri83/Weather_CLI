@@ -2,37 +2,40 @@ name: Run Python Project Weather CLI
 
 on:
   push:
-  permissions:
-  contents: write
-  branches: [ "master" ]
+    branches: [ "master" ]   # ✅ fixed indentation
   schedule:
     - cron: "0 * * * *"
   workflow_dispatch:
+
+permissions:
+  contents: write   # 🔥 REQUIRED to fix permission error
 
 jobs:
   run-script:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v4   # updated version
 
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.10"
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
 
-    - name: Install Dependencies
-      run: pip install -r requirements.txt
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
 
-    - name: Run Script
-      run: python weather.py Hyderabad
+      - name: Run Script
+        run: python weather.py Hyderabad
 
-    - name: Commit and Push Changes
-      run: |
-        git config --global user.name "Madhavi"
-        git config --global user.email "madhavi.dantuluri83@gmail.com"
-        git add weather_log.json
-        git commit -m "Update weather log" || echo "Updated the weather log with timestamp"
-        git pull origin master --rebase
-        git push
+      - name: Commit and Push Changes
+        run: |
+          git config user.name "Madhavi"
+          git config user.email "madhavi.dantuluri83@gmail.com"
+          
+          git add weather_log.json
+          
+          git commit -m "Update weather log" || echo "No changes to commit"
+          
+          git push
