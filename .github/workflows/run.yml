@@ -1,4 +1,4 @@
-name: Run Python Project
+name: Run Python Project Weather CLI
 
 on:
   push:
