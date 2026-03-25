@@ -5,6 +5,7 @@ on:
     branches: [ "master" ]
   schedule:
     - cron: "0 * * * *"
+  workflow_dispatch:
 
 jobs:
   run-script:
@@ -23,13 +24,13 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Run Script
-      run: python weather.py Bangalore
+      run: python weather.py Hyderabad
 
--name: Commit and Push Changes
-run: 
-    git config --global user.name "Madhavi"
-    git config --global user.email "madhavi.dantuluri83@gmail.com"
-    git add weather_log.json
-    git commit -m "Update weather log" || echo "No changes to commit"
-    git pull origin master --rebase
-    git push
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.name "Madhavi"
+        git config --global user.email "madhavi.dantuluri83@gmail.com"
+        git add weather_log.json
+        git commit -m "Update weather log" || echo "No changes to commit"
+        git pull origin master --rebase
+        git push
