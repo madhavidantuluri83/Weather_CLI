@@ -2,7 +2,9 @@ name: Run Python Project Weather CLI
 
 on:
   push:
-    branches: [ "master" ]
+  permissions:
+  contents: write
+  branches: [ "master" ]
   schedule:
     - cron: "0 * * * *"
   workflow_dispatch:
